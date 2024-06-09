@@ -1,0 +1,24 @@
+# .gitattributes
+
+# Vi/Vim backup files
+*~
+*.swp
+*.swo
+
+# Emacs backup files
+.DS_Store
+*~
+*#
+.#*
+
+# VScode files
+!.vscode/
+
+# Extensions
+*.so
+*.zip
+
+# Directories
+[Tt]emp/
+.*/
+
