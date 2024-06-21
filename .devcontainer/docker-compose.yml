@@ -1,0 +1,30 @@
+services:
+  dev-py:
+    image: "mcr.microsoft.com/devcontainers/python:1-3.12-bookworm"
+    platform: linux/x86_64
+    tty: true
+    volumes:
+      # Forwards the local Docker socket to the container.
+      - /var/run/docker.sock:/var/run/docker-host.sock
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ../..:/workspaces:cached
+      # Use SSL server certificate
+      - ~/.vscode/ssl:/etc/ssl/local:ro
+    networks:
+      default:
+
+  selenium:
+    image: "seleniarm/standalone-chromium:latest"
+    ports:
+        - "4444:4444"
+        - "5900:5900"
+        - "7900:7900"
+    shm_size: "2gb"
+    networks:
+      default:
+        aliases:
+          - hub
+          - node0
+
+networks:
+  default:
